@@ -23,9 +23,7 @@ class MyApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const <Widget>[
-              Text(
-                'Place Holder',
-              ),
+              Placeholder(),
             ],
           ),
         ),
