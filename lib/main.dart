@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'login.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -15,19 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Dr.Chomp'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Placeholder(),
-            ],
-          ),
-        ),
-      )
+      home: Login(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
