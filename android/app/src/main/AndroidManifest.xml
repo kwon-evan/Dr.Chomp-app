@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hustar.dr_chomp">
+    package="com.example.untitled">
    <application
-        android:label="dr_chomp"
+        android:label="untitled"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
