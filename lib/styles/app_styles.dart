@@ -5,7 +5,7 @@ Color primary = const Color(0xFF687daf);
 //색상 및 해드라인 정리
 class Styles {
   static Color primaryColor = primary;
-  static Color textColor = const Color(0xFF3b3b3b);
+  static Color textColor = const Color(0xffffffff);
   static Color bgColor = const Color(0xFFeeedf2);
   static Color orangeColor = const Color(0xFF526799);
   static TextStyle textStyle =
