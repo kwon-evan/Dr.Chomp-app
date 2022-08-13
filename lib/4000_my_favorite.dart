@@ -1,8 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:untitled/main.dart';
-import 'package:untitled/skill_test.dart';
-
 import 'styles/app_styles.dart';
 
 String _prc_text = "이동준 flutter 연습중";
@@ -15,52 +13,54 @@ class honny_tip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: const FractionalOffset(0.0, 0.0),
-                  end: const FractionalOffset(1.0, 1.0),
+      appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(1.0, 1.0),
 
-                  //컬러 Red, Blue로 변경하면 요즘느낌 가능
-                  colors: <Color>[
-                    Colors.redAccent,
-                    Colors.amber,
-                  ],
-                  stops: <double>[0.0, 1.0],
-                  tileMode: TileMode.clamp),
-              // 하단만 cirular 주기
-              // borderRadius: BorderRadius.vertical(top: Radius.circular(0), bottom:  Radius.circular(30))
-            ),
+                //컬러 Red, Blue로 변경하면 요즘느낌 가능
+                colors: <Color>[
+                  Colors.amberAccent,
+                  Colors.amber,
+                ],
+                stops: <double>[0.0, 1.0],
+                tileMode: TileMode.clamp),
+            // 하단만 cirular 주기
+            // borderRadius: BorderRadius.vertical(top: Radius.circular(0), bottom:  Radius.circular(30))
           ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.message),
-              onPressed: () {},
-              padding: EdgeInsets.zero,
-            ),
-            IconButton(
-              icon: Icon(Icons.notifications),
-              onPressed: () {},
-              padding: EdgeInsets.zero,
-            )
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.message),
+            onPressed: () {},
+            padding: EdgeInsets.zero,
+          ),
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () {
+
+            },
+            padding: EdgeInsets.zero,
+          )
+        ],
+        iconTheme: IconThemeData(),
+        // color black
+
+        title: Row(
+
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text("나의 맛집",
+                style: TextStyle(fontFamily: "NotoSans",
+                    fontSize: 23,
+                    color: Color(0xff000000),
+                    fontWeight: FontWeight.bold)),
           ],
-          iconTheme: IconThemeData(),
-          // color black
-
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text("쩝쩝박사",
-                  style: TextStyle(fontFamily: "NotoSans",
-                      fontSize: 21,
-                      color: Color(0xfff5e1e1),
-                      fontWeight: FontWeight.bold)),
-            ],
-          ),
-          backgroundColor: Styles.bgColor,
-          elevation: 0,
-
+        ),
+        backgroundColor: Styles.bgColor,
+        elevation: 0,
 
 
         // //스낵바

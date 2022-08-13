@@ -6,7 +6,7 @@ import 'package:untitled/styles/app_styles.dart';
 //   runApp(const test1());
 // }
 
-class test1 extends StatelessWidget {
+class add_Region extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -21,7 +21,7 @@ class test1 extends StatelessWidget {
 
                     //컬러 Red, Blue로 변경하면 요즘느낌 가능
                     colors: <Color>[
-                      Colors.redAccent,
+                      Colors.amberAccent,
                       Colors.amber,
                     ],
                     stops: <double>[0.0, 1.0],

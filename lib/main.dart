@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_stack/flutter_image_stack.dart';
 import 'package:gap/gap.dart'; //뛰어쓰기
 import 'package:untitled/5000_my_page.dart';
-import 'package:untitled/search_screen.dart';
-import 'package:untitled/skill_test.dart';
+import 'package:untitled/2000_search_screen.dart';
+import 'package:untitled/styles/3000_makes_plan.dart';
 import 'package:untitled/styles/app_styles.dart';
-import 'package:untitled/test1.dart';
+import 'package:untitled/3200_Add_Region.dart';
+
+import '4000_my_favorite.dart';
+import 'http/app_http.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
       appBar: AppBar(
-        flexibleSpace: Container(
+                flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: const FractionalOffset(0.0, 0.0),
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
 
                 //컬러 Red, Blue로 변경하면 요즘느낌 가능
                 colors: <Color>[
-                  Colors.redAccent,
+                  Colors.amberAccent,
                   Colors.amber,
                 ],
                 stops: <double>[0.0, 1.0],
@@ -48,7 +51,9 @@ class MyApp extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () {},
+            onPressed: () {
+
+            },
             padding: EdgeInsets.zero,
           )
         ],
@@ -56,12 +61,14 @@ class MyApp extends StatelessWidget {
         // color black
 
         title: Row(
+
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Gap(10),
             Text("쩝쩝박사",
                 style: TextStyle(fontFamily: "NotoSans",
-                    fontSize: 21,
-                    color: Color(0xfff5e1e1),
+                    fontSize: 23,
+                    color: Color(0xff000000),
                     fontWeight: FontWeight.bold)),
           ],
         ),
@@ -70,19 +77,21 @@ class MyApp extends StatelessWidget {
 
       ), // 상단 바
 
-      drawer: _drawer(),
-      body: ListView(shrinkWrap: true, children: [
+      // drawer: _drawer(),
+      body: ListView(shrinkWrap: true,
+          children: [
         Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
+              const Gap(10),
               //유저 사진 + 위치 텍스트
               main_user_locate(),
               const Gap(10),
 
               //검색창
-              main_searchbar(),
-              const Gap(30),
+              // main_searchbar(),
+              // const Gap(30),
 
               Row(
                 children: [
@@ -93,6 +102,7 @@ class MyApp extends StatelessWidget {
                 ],
               ),
               HomeBodyBanner(),
+              _http_card(),
               Store_Card(),
               Store_Card(),
               Store_Card(),
@@ -131,48 +141,27 @@ class main_user_locate extends StatelessWidget {
 
         //위치표시
         Expanded(
-            child: Row(
+            child: Container(
+
+              decoration: BoxDecoration(color: Colors.white70,borderRadius: BorderRadius.circular(5)),
+
+              child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.my_location_sharp),
-            Text("   "), // icon이랑 text 여백
-            Text(
-              "포항시 남구 지곡로 102",
-              style: Styles.headLineStyle4,
-            )
+              Icon(Icons.my_location_sharp),
+              Gap(5),
+              Text(
+                "포항시 남구 지곡로 102",
+                style: TextStyle(color:Colors.grey,fontSize: 15, fontWeight: FontWeight.w400),
+              )
           ],
-        )),
+        ),
+            )),
       ],
     );
   }
 }
 
-//검색창
-class main_searchbar extends StatelessWidget {
-  const main_searchbar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white12,
-                prefixIcon:
-                    Icon(Icons.search, color: Color(0xFFBFC205), size: 20),
-                hintText: "오늘은 무엇을 먹을까요?",
-                hintStyle: Styles.headLineStyle4,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 //진행 일정
 class main_planner extends StatelessWidget {
@@ -222,7 +211,12 @@ class main_planner extends StatelessWidget {
           ),
           Gap(10),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => makes_plan(), fullscreenDialog: true),
+              );            },
             child: Text(
               "일정 추가하기",
               style: TextStyle(
@@ -513,7 +507,7 @@ class Store_Card extends StatelessWidget {
   String _user_num = "1840";
   String _store_comment = "※한우곱창,대창구이,곱창전골※ 포항 맛집!";
 
-  //좋아요 이미지
+  //유저 좋아요 이미지
   List<String> _images = [
     "http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg",
     "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyMjA3MjlfNjMg%2FMDAxNjU5MDg4ODE4Nzkx.TIJso473Rf1tyLZIUVZPDpm0eIjVUXDml_ThEdAqfmIg.ISsf7w8hzfd7UdLdlbjnfM29BKHmoaTri-CYn4caHbwg.JPEG%2Fupload_7611f33ce2a5accf4d0dfea14ab4434e.jpg",
@@ -702,9 +696,12 @@ Route _createRoute(int port_num) {
   } else if (port_num == 2) {
     _page = honny_tip();
   } else if (port_num == 3) {
-    _page = test1();
+    _page = makes_plan();
   } else if (port_num == 4) {
     _page = SearchScreen();
+  } else if (port_num == 5){
+    _page = app_http();
+
   }
 
   return PageRouteBuilder(
@@ -724,4 +721,20 @@ Route _createRoute(int port_num) {
       return child;
     },
   );
+}
+
+
+class _http_card extends StatelessWidget {
+  const _http_card({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: TextButton(onPressed: (){ Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => app_http(), fullscreenDialog: true),
+      );}, child: Text("http 연결")),
+    );
+  }
 }
