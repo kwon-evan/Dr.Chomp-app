@@ -37,7 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                 //컬러 Red, Blue로 변경하면 요즘느낌 가능
                 colors: <Color>[
-                  Colors.redAccent,
+                  Colors.amberAccent,
                   Colors.amber,
                 ],
                 stops: <double>[0.0, 1.0],
@@ -46,35 +46,23 @@ class _SearchScreenState extends State<SearchScreen> {
             // borderRadius: BorderRadius.vertical(top: Radius.circular(0), bottom:  Radius.circular(30))
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.message),
-            onPressed: () {},
-            padding: EdgeInsets.zero,
-          ),
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-            padding: EdgeInsets.zero,
-          )
-        ],
         iconTheme: IconThemeData(),
-        // color black
 
         title: Row(
+
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text("쩝쩝박사",
                 style: TextStyle(fontFamily: "NotoSans",
-                    fontSize: 21,
-                    color: Color(0xfff5e1e1),
+                    fontSize: 23,
+                    color: Color(0xff000000),
                     fontWeight: FontWeight.bold)),
           ],
         ),
         backgroundColor: Styles.bgColor,
         elevation: 0,
 
-      ),
+      ), // 상
       body: Container(
         child: Column(
           children: <Widget>[

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:untitled/main.dart';
 
 import 'styles/app_styles.dart';
@@ -18,7 +19,7 @@ class my_page extends StatelessWidget {
 
                 //컬러 Red, Blue로 변경하면 요즘느낌 가능
                 colors: <Color>[
-                  Colors.redAccent,
+                  Colors.amberAccent,
                   Colors.amber,
                 ],
                 stops: <double>[0.0, 1.0],
@@ -35,7 +36,9 @@ class my_page extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () {},
+            onPressed: () {
+
+            },
             padding: EdgeInsets.zero,
           )
         ],
@@ -43,19 +46,20 @@ class my_page extends StatelessWidget {
         // color black
 
         title: Row(
+
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text("My_page",
+            Text("내 정보",
                 style: TextStyle(fontFamily: "NotoSans",
-                    fontSize: 21,
-                    color: Color(0xfff5e1e1),
+                    fontSize: 23,
+                    color: Color(0xff000000),
                     fontWeight: FontWeight.bold)),
           ],
         ),
         backgroundColor: Styles.bgColor,
         elevation: 0,
 
-      ),
+      ), // 상단 바
 
 
       body: Padding(

@@ -40,6 +40,14 @@ dependencies:
   flutter_image_stack: 0.0.6
   shimmer : ^2.0.0
   intl : ^0.17.0
+  http: ^0.13.5
+  flutter_launcher_name: ^0.0.1
+  flutter_calendar_carousel: ^2.4.0
+
+
+
+flutter_launcher_name:
+  name: "쩝쩝박사"
 
 dev_dependencies:
   flutter_test:

@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 
 Color primary = const Color(0xFF687daf);
 
-//색상 및 해드라인 정리
+//폰트 색상 및 해드라인 정리
 class Styles {
   static Color primaryColor = primary;
   static Color textColor = const Color(0xffffffff);
@@ -20,7 +20,7 @@ class Styles {
       fontSize: 14, color: Colors.grey.shade500, fontWeight: FontWeight.w500);
 }
 
-//은기꺼
+//폰트 스타일 정리
 TextStyle h4({Color mColor = Colors.black}) {
   return TextStyle(fontSize: 34, fontWeight: FontWeight.bold, color: mColor);
 }
