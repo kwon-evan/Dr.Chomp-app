@@ -9,8 +9,9 @@ import 'package:untitled/styles/3000_makes_plan.dart';
 import 'package:untitled/styles/app_styles.dart';
 import 'package:untitled/3200_Add_Region.dart';
 
+import '3100_make_plan_calendar.dart';
 import '4000_my_favorite.dart';
-import 'http/app_http.dart';
+import 'http/8000_store_info_app_http.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,12 +47,22 @@ class MyApp extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.message),
-            onPressed: () {},
+            onPressed: () {
+              // Navigator.of(context).push(_createRoute(5));
+            },
             padding: EdgeInsets.zero,
           ),
           IconButton(
             icon: Icon(Icons.notifications),
             onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => TestCalander(),
+              //     fullscreenDialog: true
+              //   )
+              // );
+
 
             },
             padding: EdgeInsets.zero,
@@ -102,11 +113,14 @@ class MyApp extends StatelessWidget {
                 ],
               ),
               HomeBodyBanner(),
-              _http_card(),
-              Store_Card(),
-              Store_Card(),
-              Store_Card(),
-              Store_Card(),
+            // _http_card(),
+              app_http(),
+              // Store_Card(),
+              // Store_Card(),
+              // Store_Card(),
+              // Store_Card(),
+
+
 
             ],
           ),
@@ -142,9 +156,15 @@ class main_user_locate extends StatelessWidget {
         //위치표시
         Expanded(
             child: Container(
+              height: 30,
 
-              decoration: BoxDecoration(color: Colors.white70,borderRadius: BorderRadius.circular(5)),
-
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(0, 1),
+                    spreadRadius: 1.0,
+                    blurRadius: 2.0)
+              ], borderRadius: BorderRadius.circular(15), color: Color(0xffffffff)),
               child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -152,7 +172,7 @@ class main_user_locate extends StatelessWidget {
               Gap(5),
               Text(
                 "포항시 남구 지곡로 102",
-                style: TextStyle(color:Colors.grey,fontSize: 15, fontWeight: FontWeight.w400),
+                style: TextStyle(color:Colors.blueGrey,fontSize: 15, fontWeight: FontWeight.w400),
               )
           ],
         ),
@@ -431,7 +451,7 @@ class HomeBodyBanner extends StatelessWidget {
       child: Stack(
         children: [
           _buildBannerImage(),
-          _buildBannerCaption(),
+          _buildBannerCaption(context),
         ],
       ),
     );
@@ -445,11 +465,13 @@ class HomeBodyBanner extends StatelessWidget {
         fit: BoxFit.cover,
         width: double.infinity,
         height: 320,
+        color: Colors.black26,
+        colorBlendMode: BlendMode.darken,
       ),
     );
   }
 
-  Widget _buildBannerCaption() {
+  Widget _buildBannerCaption(BuildContext context) {
     return Positioned(
       top: 40,
       left: 40,
@@ -461,7 +483,7 @@ class HomeBodyBanner extends StatelessWidget {
               maxWidth: 250,
             ),
             child: Text(
-              "이제, 여행은 가까운 곳에서",
+              "식도락 여행은   쩝쩝박사와 함께",
               style: h4(mColor: Colors.white),
             ),
           ),
@@ -471,7 +493,7 @@ class HomeBodyBanner extends StatelessWidget {
               maxWidth: 250,
             ),
             child: Text(
-              "새로운 공간에 머물러 보세요. 살아보기, 출장, 여행 등 다양한 목적에 맞는 숙소를 찾아보세요.",
+              "쩝쩝박사와 함께 다양한 지역들의 맛집을 친구들과 함께 투어해보세요",
               style: subtitle1(mColor: Colors.white),
             ),
           ),
@@ -486,9 +508,17 @@ class HomeBodyBanner extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                print("포항");
+                String po_text = "포항";
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => search_result(po_text),
+                      fullscreenDialog: true),
+              );},
               child: Text(
-                "가까운 여행지 둘러보기",
+                "우리지역 맛집 둘러보기",
                 style: subtitle2(),
               ),
             ),
@@ -500,190 +530,190 @@ class HomeBodyBanner extends StatelessWidget {
 }
 
 //음식 점 카드
-class Store_Card extends StatelessWidget {
-  String _Store_name = "효자곱 영일대 직영점";
-  String _Store_cateroty = "곱창";
-  String _username = "junu0804";
-  String _user_num = "1840";
-  String _store_comment = "※한우곱창,대창구이,곱창전골※ 포항 맛집!";
-
-  //유저 좋아요 이미지
-  List<String> _images = [
-    "http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg",
-    "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyMjA3MjlfNjMg%2FMDAxNjU5MDg4ODE4Nzkx.TIJso473Rf1tyLZIUVZPDpm0eIjVUXDml_ThEdAqfmIg.ISsf7w8hzfd7UdLdlbjnfM29BKHmoaTri-CYn4caHbwg.JPEG%2Fupload_7611f33ce2a5accf4d0dfea14ab4434e.jpg",
-    "http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg",
-    "https://post-phinf.pstatic.net/MjAxOTExMjZfMTE3/MDAxNTc0NzU4MDg3NDEw.CggSQDsdhfe1Ikuw1pcxdwFLGtkatpSpcXe3ao2v9L0g.qasezGYP6qHINA3il8QZWyue5k8DBumiDedcVwMqH7og.JPEG/EHJNBOiUwAUAeQX.jpg?type=w1200",
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      // 1. 상단에 마진을 준다.
-      padding: const EdgeInsets.only(top: gap_m),
-
-      // 2. 이미지와 글자를 겹치게 하기 위해서 Stack 위젯을 사용한다.
-      //stack(겹치기) - Positioned(stack안에 text 위치)
-      child: Column(
-        children: [_storeImage(), Gap(20)],
-      ),
-    );
-  }
-
-  Widget _storeImage() {
-    return Container(
-      height: 360,
-      width: 400,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.vertical(
-              top: Radius.circular(10), bottom: Radius.circular(10)),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black26, offset: Offset(1, 1), blurRadius: 5.0)
-          ],
-          color: Colors.white),
-      child: Column(
-        children: [
-          //이미지
-          ClipRRect(
-            //이미지 border도 해줘야함
-            borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-            child: Image.network(
-              "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyMjA3MjlfNjMg%2FMDAxNjU5MDg4ODE4Nzkx.TIJso473Rf1tyLZIUVZPDpm0eIjVUXDml_ThEdAqfmIg.ISsf7w8hzfd7UdLdlbjnfM29BKHmoaTri-CYn4caHbwg.JPEG%2Fupload_7611f33ce2a5accf4d0dfea14ab4434e.jpg",
-              // fit: BoxFit.fill,
-              // width: double.infinity,
-              alignment: Alignment.topCenter,
-              height: 250,
-              width: 400,
-              fit: BoxFit.fill,
-            ),
-          ),
-
-          // 카드 Text 내용
-          Container(
-            padding: EdgeInsets.only(top: 10,left: 5,right: 5),
-            child: Column(
-              children: [
-                Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                  //글씨 높이 맞춰줌
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
-
-                  children: [
-                    Text(
-                      '$_Store_name',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: "NotoSans"),
-                    ),
-                    Spacer(flex: 1),
-                    Text(
-                      '$_Store_cateroty',
-                      style: TextStyle(
-                          fontFamily: "NotoSans",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
-                          color: Colors.grey),
-                    ),
-                    Spacer(flex: 10),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite_border,
-                        size: 20,
-                      ),
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      // 패딩 설정
-                      constraints: BoxConstraints(),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.comment,
-                        size: 20,
-                      ),
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      // 패딩 설정
-                      constraints: BoxConstraints(),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.launch,
-                        size: 20,
-                      ),
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      // 패딩 설정
-                      constraints: BoxConstraints(),
-                    ),
-                  ],
-                ),
-                Gap(3),
-                Row(
-                  children: [
-                    FlutterImageStack(
-                      imageList: _images,
-                      showTotalCount: true,
-                      totalCount: 0,
-                      itemRadius: 30,
-                      // Radius of each images
-                      itemCount:
-                          3, // Maximum number of images to be shown in stack
-                    ),
-                    //user name
-                    Text("$_username",
-                        style: TextStyle(
-                            fontFamily: "NotoSans",
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15,
-                            color: Colors.black)),
-                    //total favorit
-                    Text(
-                      "님 외 ",
-                      style: TextStyle(
-                          fontFamily: "NotoSans",
-                          fontWeight: FontWeight.w300,
-                          fontSize: 12,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      "$_user_num",
-                      style: TextStyle(
-                          fontFamily: "NotoSans",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      " 명이 수강중입니다.",
-                      style: TextStyle(
-                          fontFamily: "NotoSans",
-                          fontWeight: FontWeight.w300,
-                          fontSize: 12,
-                          color: Colors.black),
-                    ),
-                  ],
-                ),
-                Gap(3),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //가게 comment
-                    Text('$_store_comment',
-                    style: TextStyle(
-                      fontFamily: "NotoSans",fontWeight: FontWeight.w500,fontSize: 16),)
-                  ],
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
+// class Store_Card extends StatelessWidget {
+//   String _Store_name = "효자곱 영일대 직영점";
+//   String _Store_cateroty = "곱창";
+//   String _username = "junu0804";
+//   String _user_num = "1840";
+//   String _store_comment = "※한우곱창,대창구이,곱창전골※ 포항 맛집!";
+//
+//   //유저 좋아요 이미지
+//   List<String> _images = [
+//     "http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg",
+//     "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyMjA3MjlfNjMg%2FMDAxNjU5MDg4ODE4Nzkx.TIJso473Rf1tyLZIUVZPDpm0eIjVUXDml_ThEdAqfmIg.ISsf7w8hzfd7UdLdlbjnfM29BKHmoaTri-CYn4caHbwg.JPEG%2Fupload_7611f33ce2a5accf4d0dfea14ab4434e.jpg",
+//     "http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg",
+//     "https://post-phinf.pstatic.net/MjAxOTExMjZfMTE3/MDAxNTc0NzU4MDg3NDEw.CggSQDsdhfe1Ikuw1pcxdwFLGtkatpSpcXe3ao2v9L0g.qasezGYP6qHINA3il8QZWyue5k8DBumiDedcVwMqH7og.JPEG/EHJNBOiUwAUAeQX.jpg?type=w1200",
+//   ];
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       // 1. 상단에 마진을 준다.
+//       padding: const EdgeInsets.only(top: gap_m),
+//
+//       // 2. 이미지와 글자를 겹치게 하기 위해서 Stack 위젯을 사용한다.
+//       //stack(겹치기) - Positioned(stack안에 text 위치)
+//       child: Column(
+//         children: [_storeImage(), Gap(20)],
+//       ),
+//     );
+//   }
+//
+//   Widget _storeImage() {
+//     return Container(
+//       height: 360,
+//       width: 400,
+//       decoration: BoxDecoration(
+//           borderRadius: BorderRadius.vertical(
+//               top: Radius.circular(10), bottom: Radius.circular(10)),
+//           boxShadow: [
+//             BoxShadow(
+//                 color: Colors.black26, offset: Offset(1, 1), blurRadius: 5.0)
+//           ],
+//           color: Colors.white),
+//       child: Column(
+//         children: [
+//           //이미지
+//           ClipRRect(
+//             //이미지 border도 해줘야함
+//             borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+//             child: Image.network(
+//               "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyMjA3MjlfNjMg%2FMDAxNjU5MDg4ODE4Nzkx.TIJso473Rf1tyLZIUVZPDpm0eIjVUXDml_ThEdAqfmIg.ISsf7w8hzfd7UdLdlbjnfM29BKHmoaTri-CYn4caHbwg.JPEG%2Fupload_7611f33ce2a5accf4d0dfea14ab4434e.jpg",
+//               // fit: BoxFit.fill,
+//               // width: double.infinity,
+//               alignment: Alignment.topCenter,
+//               height: 250,
+//               width: 400,
+//               fit: BoxFit.fill,
+//             ),
+//           ),
+//
+//           // 카드 Text 내용
+//           Container(
+//             padding: EdgeInsets.only(top: 10,left: 5,right: 5),
+//             child: Column(
+//               children: [
+//                 Row(
+//                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//
+//                   //글씨 높이 맞춰줌
+//                   crossAxisAlignment: CrossAxisAlignment.baseline,
+//                   textBaseline: TextBaseline.alphabetic,
+//
+//                   children: [
+//                     Text(
+//                       '$_Store_name',
+//                       style: TextStyle(
+//                           fontSize: 18,
+//                           fontWeight: FontWeight.w600,
+//                           fontFamily: "NotoSans"),
+//                     ),
+//                     Spacer(flex: 1),
+//                     Text(
+//                       '$_Store_cateroty',
+//                       style: TextStyle(
+//                           fontFamily: "NotoSans",
+//                           fontWeight: FontWeight.w400,
+//                           fontSize: 13,
+//                           color: Colors.grey),
+//                     ),
+//                     Spacer(flex: 10),
+//                     IconButton(
+//                       onPressed: () {},
+//                       icon: Icon(
+//                         Icons.favorite_border,
+//                         size: 20,
+//                       ),
+//                       padding: EdgeInsets.symmetric(horizontal: 5),
+//                       // 패딩 설정
+//                       constraints: BoxConstraints(),
+//                     ),
+//                     IconButton(
+//                       onPressed: () {},
+//                       icon: Icon(
+//                         Icons.comment,
+//                         size: 20,
+//                       ),
+//                       padding: EdgeInsets.symmetric(horizontal: 5),
+//                       // 패딩 설정
+//                       constraints: BoxConstraints(),
+//                     ),
+//                     IconButton(
+//                       onPressed: () {},
+//                       icon: Icon(
+//                         Icons.launch,
+//                         size: 20,
+//                       ),
+//                       padding: EdgeInsets.symmetric(horizontal: 5),
+//                       // 패딩 설정
+//                       constraints: BoxConstraints(),
+//                     ),
+//                   ],
+//                 ),
+//                 Gap(3),
+//                 Row(
+//                   children: [
+//                     FlutterImageStack(
+//                       imageList: _images,
+//                       showTotalCount: true,
+//                       totalCount: 0,
+//                       itemRadius: 30,
+//                       // Radius of each images
+//                       itemCount:
+//                           3, // Maximum number of images to be shown in stack
+//                     ),
+//                     //user name
+//                     Text("$_username",
+//                         style: TextStyle(
+//                             fontFamily: "NotoSans",
+//                             fontWeight: FontWeight.w400,
+//                             fontSize: 15,
+//                             color: Colors.black)),
+//                     //total favorit
+//                     Text(
+//                       "님 외 ",
+//                       style: TextStyle(
+//                           fontFamily: "NotoSans",
+//                           fontWeight: FontWeight.w300,
+//                           fontSize: 12,
+//                           color: Colors.black),
+//                     ),
+//                     Text(
+//                       "$_user_num",
+//                       style: TextStyle(
+//                           fontFamily: "NotoSans",
+//                           fontWeight: FontWeight.w400,
+//                           fontSize: 14,
+//                           color: Colors.black),
+//                     ),
+//                     Text(
+//                       " 명이 수강중입니다.",
+//                       style: TextStyle(
+//                           fontFamily: "NotoSans",
+//                           fontWeight: FontWeight.w300,
+//                           fontSize: 12,
+//                           color: Colors.black),
+//                     ),
+//                   ],
+//                 ),
+//                 Gap(3),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     //가게 comment
+//                     Text('$_store_comment',
+//                     style: TextStyle(
+//                       fontFamily: "NotoSans",fontWeight: FontWeight.w500,fontSize: 16),)
+//                   ],
+//                 ),
+//               ],
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 //이동을 위한 라우터 설정
 Route _createRoute(int port_num) {
@@ -700,7 +730,8 @@ Route _createRoute(int port_num) {
   } else if (port_num == 4) {
     _page = SearchScreen();
   } else if (port_num == 5){
-    _page = app_http();
+    // _page = app_http();
+  } else if (port_num == 6){
 
   }
 
@@ -721,20 +752,4 @@ Route _createRoute(int port_num) {
       return child;
     },
   );
-}
-
-
-class _http_card extends StatelessWidget {
-  const _http_card({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: TextButton(onPressed: (){ Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => app_http(), fullscreenDialog: true),
-      );}, child: Text("http 연결")),
-    );
-  }
 }

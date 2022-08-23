@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:untitled/styles/app_styles.dart';
 
-import '../3200_Add_Region.dart';
 import '../3100_make_plan_calendar.dart';
+import '../3200_Add_Region.dart';
 import '../main.dart';
 
 class makes_plan extends StatefulWidget {
@@ -67,7 +67,7 @@ class _makes_planState extends State<makes_plan> {
                   children : [ Container(
                     height: 200,
                     width: double.infinity,
-                    color: Colors.grey,
+                    // color: Colors.grey,
                     child:
                     Container(
                       alignment: Alignment(0.0,0.0),
@@ -76,11 +76,37 @@ class _makes_planState extends State<makes_plan> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>  dacal(), fullscreenDialog: true),
+                              builder: (context) =>  TestCalender(), fullscreenDialog: true),
                         );
                       },
 
                         child: Text("지금 추가하세요"),
+                      ),
+
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0XFF000066).withOpacity(0.03),
+                              blurRadius: 15,
+                              spreadRadius: 10,
+                              offset: const Offset(0, 10),
+                            ),
+                            BoxShadow(
+                              color: Color(0XFF000066).withOpacity(0.0165),
+                              blurRadius: 7.5,
+                              spreadRadius: 5,
+                              offset: const Offset(0, 5),
+                            ),
+                            BoxShadow(
+                              color: Color(0XFF000066).withOpacity(0.0095),
+                              blurRadius: 5,
+                              spreadRadius: 2.5,
+                              offset: const Offset(0, 2.5),
+                            ),
+                          ]
                       ),
 
                     ),
@@ -88,16 +114,42 @@ class _makes_planState extends State<makes_plan> {
 
                 ],),
 
-                Gap(100),
+                Gap(60),
                 Text("일정 코스 추가하기", style: basic_ts),
                 Stack(
                   children: [
                     Container(
+                      alignment: Alignment(0.0,0.0),
                     height: 200,
                     width: double.infinity,
-                    color: Colors.grey,
+                    child : Text("예정된 계획이 없습니다.",style: basic_ts),
+                    // color: Colors.grey,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0XFF000066).withOpacity(0.03),
+                              blurRadius: 15,
+                              spreadRadius: 10,
+                              offset: const Offset(0, 10),
+                            ),
+                            BoxShadow(
+                              color: Color(0XFF000066).withOpacity(0.0165),
+                              blurRadius: 7.5,
+                              spreadRadius: 5,
+                              offset: const Offset(0, 5),
+                            ),
+                            BoxShadow(
+                              color: Color(0XFF000066).withOpacity(0.0095),
+                              blurRadius: 5,
+                              spreadRadius: 2.5,
+                              offset: const Offset(0, 2.5),
+                            ),
+                          ]
+                      ),
                   ),
-                    Text("예정된 계획이 없습니다.",style: basic_ts)
           ],
           ),
                 
@@ -110,3 +162,5 @@ class _makes_planState extends State<makes_plan> {
           );
   }
 }
+
+
