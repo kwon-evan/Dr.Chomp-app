@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:untitled/main.dart';
 import 'package:untitled/styles/app_styles.dart';
 
-// void main() {
-//   runApp(const test1());
-// }
+class add_Region extends StatefulWidget {
+  String? calendar_Data;
 
-class add_Region extends StatelessWidget {
+  add_Region(this.calendar_Data, {Key? key}) : super(key : key);
+
+  @override
+  State<add_Region> createState() => _add_RegionState(calendar_Data!);
+}
+
+class _add_RegionState extends State<add_Region> {
+  String? calendar_data;
+  _add_RegionState(this.calendar_data);
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -51,7 +60,7 @@ class add_Region extends StatelessWidget {
                 Text("쩝쩝박사",
                     style: TextStyle(fontFamily: "NotoSans",
                         fontSize: 21,
-                        color: Color(0xfff5e1e1),
+                        color: Color(0xff000000),
                         fontWeight: FontWeight.bold)),
               ],
             ),
@@ -83,44 +92,18 @@ class add_Region extends StatelessWidget {
           body: TabBarView(
             children: [
               Container(
+                padding: EdgeInsets.only(top: 180),
+                alignment: Alignment.center,
                   child: Column(children: [
-                Text(
-                  "나토산스 웨이트 w100",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: "NotoSans",
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "나토산스 웨이트 w600",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: "NotoSans",
-                      fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  "나토산스 웨이트 w200",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: "NotoSans",
-                      fontWeight: FontWeight.normal),
-                ),
-                Text(
-                  "나토산스 웨이트 w300",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: "NotoSans",
-                      fontWeight: FontWeight.w300),
-                ),
-                Text(
-                  "나토산스 웨이트 w400",
+                Text("여행 날짜 : " +
+                  calendar_data!,
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: "NotoSans",
                       fontWeight: FontWeight.w400),
                 ),
                 Text(
-                  "나토산스 웨이트 w500",
+                  "방문지역 추가 예정",
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: "NotoSans",
@@ -129,7 +112,13 @@ class add_Region extends StatelessWidget {
               ])),
               _tab1(),
               Center(
-                child: Text("page3"),
+                child: Text(
+                  "친구추가 구현 예정",
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontFamily: "NotoSans",
+                      fontWeight: FontWeight.w600),
+                ),
               ),
             ],
           ),
@@ -144,31 +133,107 @@ class _tab1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Center(
-            child: Image.asset(
-          "assets/img1.jpg",
-          width: 150,
-        )),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("1"),
-              Text("2"),
-              Text("3"),
-              Text("4"),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end, // 우측 정렬
-                children: [
-                  Icon(Icons.favorite),
-                  Text('5'),
-                ],
-              )
-            ],
-          ),
-        )
+        Text("맛있는대, 어디갈과? 쩝쩝박사", style: TextStyle(fontSize: 24,fontWeight: FontWeight.w600),),
+        Gap(50),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                Center(
+                    child: Image.asset(
+                  "assets/img1.jpg",
+                  fit: BoxFit.fill,
+                      width: 120,
+                      height: 160,
+
+                    )),
+                Text("App 개발 담당 : 이동준", style: TextStyle(fontSize: 12),)
+              ],
+            ),
+            Gap(10),
+
+            Column(
+              children: [
+                Center(
+                    child: Image.asset(
+                      "assets/img/img10.jpg",
+                      fit: BoxFit.fill,
+                      width: 120,
+                      height: 160,
+
+                    )),
+                Text("Algorithm 담당 : 황호민", style: TextStyle(fontSize: 12),)
+
+              ],
+            ),
+            Gap(10),
+            Column(
+              children: [
+                Center(
+                    child: Image.asset(
+                      "assets/img/img11.jpg",
+                      fit: BoxFit.fill,
+                      width: 120,
+                      height: 160,
+                    )),
+                Text("Data Scraping 담당 : 주민우", style: TextStyle(fontSize: 12),)
+              ],
+            )
+
+          ],
+        ),
+        Gap(30),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                Center(
+                    child: Image.asset(
+                      "assets/img/img12.jpg",
+                      fit: BoxFit.fill,
+                      width: 120,
+                      height: 160,
+
+                    )),
+                Text("Algorithm 담당 : 권헌진", style: TextStyle(fontSize: 12),)
+              ],
+            ),
+            Gap(10),
+
+            Column(
+              children: [
+                Center(
+                    child: Image.asset(
+                      "assets/img/img13.png",
+                      fit: BoxFit.fill,
+                      width: 120,
+                      height: 160,
+
+                    )),
+                Text("Server 담당 : 김재희", style: TextStyle(fontSize: 12),)
+              ],
+            ),
+            Gap(10),
+            Column(
+              children: [
+                Center(
+                    child: Image.asset(
+                      "assets/img/img14.jpg",
+                      fit: BoxFit.fill,
+                      width: 120,
+                      height: 160,
+                    )),
+                Text("Database 담당 : 박준우", style: TextStyle(fontSize: 12),)
+              ],
+            )
+
+          ],
+        ),
       ],
     );
   }

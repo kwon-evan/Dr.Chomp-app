@@ -43,8 +43,12 @@ dependencies:
   http: ^0.13.5
   flutter_launcher_name: ^0.0.1
   flutter_calendar_carousel: ^2.4.0
+  cr_calendar: ^0.0.10
+  table_calendar: ^3.0.2
+  circular_profile_avatar: ^2.0.5
 
-
+  syncfusion_flutter_datepicker: ^20.2.43
+  vertical_barchart: ^2.0.0+2
 
 flutter_launcher_name:
   name: "쩝쩝박사"
