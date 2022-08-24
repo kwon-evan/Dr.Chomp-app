@@ -569,7 +569,7 @@ class RemoteService {
   Future<List<Post>?> getPosts() async {
     var client = http.Client();
 
-    var uri = Uri.parse('http://141.223.122.72:8000/stores');
+    var uri = Uri.parse('http://141.223.122.72:8000/stores/recommend/2');
     var response = await client.get(uri);
     if (response.statusCode == 200) {
       var json = response.body;
