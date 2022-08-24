@@ -354,7 +354,7 @@ class _app_http extends State<favorite_app_http> {
   // String _Store_name = "효자곱 영일대 직영점";
   // String _Store_cateroty = "곱창";
   String _username = "junu0804";
-  String _user_num = "50만";
+  String _user_num = "여러명";
   String _store_comment = "※쩝쩝박사가 추천하는 맛집 !※";
   bool clicked = false;
 
@@ -526,7 +526,7 @@ class _app_http extends State<favorite_app_http> {
                                             color: Colors.black),
                                       ),
                                       Text(
-                                        " 명이 수강중입니다.",
+                                        "이 수강중입니다.",
                                         style: TextStyle(
                                             fontFamily: "NotoSans",
                                             fontWeight: FontWeight.w300,
@@ -569,7 +569,7 @@ class RemoteService {
   Future<List<Post>?> getPosts() async {
     var client = http.Client();
 
-    var uri = Uri.parse('http://141.223.122.72:8000/stores');
+    var uri = Uri.parse('http://141.223.122.72:8000/stores/recommend/2');
     var response = await client.get(uri);
     if (response.statusCode == 200) {
       var json = response.body;
